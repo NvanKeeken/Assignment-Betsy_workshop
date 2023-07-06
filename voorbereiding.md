@@ -52,3 +52,9 @@ User:
 -city
 -country 
 - bank_account_number
+
+Product:
+-name 
+-description 
+-price_per_unit
+-quantity_in_stock
