@@ -36,4 +36,9 @@ class ProductTag():
    pass
 
 class Transactions():
-   pass
+   product = ForeignKeyField(Product, backref="sales")
+   buyer = ForeignKeyField(User, backref="purchases")
+   quatity_bought = IntegerField()
+
+
+
