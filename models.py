@@ -30,7 +30,7 @@ class Product(BaseModel):
    quantity_in_stock = IntegerField()
 
 class Tag():
-   pass
+   name = CharField()
 
 class ProductTag():
    pass
