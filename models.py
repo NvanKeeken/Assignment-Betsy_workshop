@@ -4,7 +4,7 @@ from peewee import (Model,
                     CharField, 
                     ForeignKeyField, 
                     IntegerField, 
-                    FloatField)
+                    DecimalField)
 
 db = SqliteDatabase("betsy.db")
 
@@ -24,7 +24,10 @@ class User(BaseModel):
   bank_account_number = CharField()
 
 class Product(BaseModel):
-   pass
+   name = CharField()
+   description = CharField()
+   price_per_unit = DecimalField() # or floatfield
+   quantity_in_stock = IntegerField()
 
 class Tag():
    pass
