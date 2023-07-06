@@ -33,7 +33,8 @@ class Tag():
    name = CharField()
 
 class ProductTag():
-   pass
+   tag = ForeignKeyField(Tag, backref= "products")
+   product = ForeignKeyField(Product, backref="tags")
 
 class Transactions():
    product = ForeignKeyField(Product, backref="sales")
