@@ -17,7 +17,7 @@ class User(BaseModel):
   first_name = CharField()
   last_name = CharField()
   street_name = CharField()
-  house_number = CharField()
+  house_number = CharField() # charfield because house number can have a addition of a letter
   postal_code = CharField() 
   city = CharField()
   country = CharField()
