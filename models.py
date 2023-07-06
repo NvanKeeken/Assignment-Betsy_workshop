@@ -14,7 +14,14 @@ class BaseModel(Model):
         database = db
 
 class User(BaseModel):
-  pass
+  first_name = CharField()
+  last_name = CharField()
+  street_name = CharField()
+  house_number = CharField()
+  postal_code = CharField() 
+  city = CharField()
+  country = CharField()
+  bank_account_number = CharField()
 
 class Product(BaseModel):
    pass
