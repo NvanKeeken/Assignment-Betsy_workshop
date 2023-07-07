@@ -20,17 +20,17 @@ class User(BaseModel):
   house_number = CharField() # charfield because house number can have a addition of a letter
   postal_code = CharField() 
   city = CharField()
-  country = CharField()
-  bank_account_number = CharField()
+  country = CharField(max_length=60) # longest country name has 56 charaters 
+  bank_account_number = CharField(unique = True)
 
 class Product(BaseModel):
    name = CharField()
    description = CharField()
-   price_per_unit = DecimalField() # or floatfield
+   price_per_unit = DecimalField(decimal_places=2) # or floatfield
    quantity_in_stock = IntegerField()
 
 class Tag():
-   name = CharField()
+   name = CharField(unique= True)
 
 class ProductTag():
    tag = ForeignKeyField(Tag, backref= "products")
@@ -39,7 +39,7 @@ class ProductTag():
 class Transactions():
    product = ForeignKeyField(Product, backref="sales")
    buyer = ForeignKeyField(User, backref="purchases")
-   quatity_bought = IntegerField()
+   quantity_bought = IntegerField()
 
 
 
