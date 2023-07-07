@@ -1,4 +1,4 @@
-from models import User, Product, Transactions, Tag, ProductTag
+from models import (db, User, Product, Transactions, Tag, ProductTag)
 import os
 
 def delete_database():
@@ -7,3 +7,26 @@ def delete_database():
     if os.path.exists(database_path):
         os.remove(database_path)
 
+def set_test_data():
+    db.connect()
+
+    db.create_tables([
+        User,
+        Product,
+        Tag,
+        Transactions,
+        ProductTag
+    ])
+
+    # define test data per table
+    users = []
+
+    products = []
+
+    tags = []
+
+    transactions = []
+
+    product_tags = []
+
+    # Insert new data per table
