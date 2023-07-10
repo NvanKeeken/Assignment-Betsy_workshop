@@ -41,8 +41,6 @@ the tags should not be duplicated
         tag_id = Foreignkeyfield()
         product_id = Foreignkeyfield()
 
-
-
 User:
 -first_name
 -last_name
@@ -58,3 +56,75 @@ Product:
 -description 
 -price_per_unit
 -quantity_in_stock
+
+Transaction:
+-product 
+-buyer 
+-quantity_bought
+
+Tag:
+- name
+
+ProductTag:
+- product (id)
+- tag (id)
+
+## Constraints 
+Constraints are restrictions imposed on the possible values that can be put in a field. One such constraint is primary key.
+
+- The tags should not be duplicated
+    unique = True
+  If a field is not a primary key, still it can be constrained to store unique values in table.
+- Possibly a house number addition constraint null allows null values
+      null = True
+- The price should be stored in a safe way; rounding errors should be impossible.
+  if you use DecimalField special parameters to use are decimal_places 
+    decimal_places = 2
+- on charfield you can add a constraint max_digits to limit the amount of characters 
+  for example for postal code or bank account. 
+     - PostalCode: The country with the most amount of digits for postal code is 10  
+          so max_digits = 10 or 12 if you want to include future changes
+     - IBAN: contains up to 34 alphanumeric characters 
+          so max_digits = 34 and it has to be unique=True
+     - Price_per_unit: is not 0 
+         class Meta:
+             constraints=[Check('price_per_unit>0')]
+
+## TEST DATA
+possible users:
+- Louise, Hendriks, bekerbaan, 4,6333 EZ, Schimmert, The Netherlands, 457868 
+- Denis, Jansen, hanenwei, 8, 6344 GH, Schinnen, The Netherlands, 567897
+- Abel, Oliver, Baker street, 11, NW1, London, UK, 678967,
+- Jenny, Patterson, Cannon street, 12, B2 5EP, Birmingham, Uk, 56789
+- Helena, Joosten, Hoofdstraat, 62, 7311 AT, Apeldoorn, The Netherlands, 467390
+
+possible products:
+- Sunflower studs, handmade plastic earing studs cute for summer and spring, 5.00, 3
+- Silver Moon studs, handmade Moon earing studs from silver with stirling silver backs, 13.00, 16
+- Moonstone Charm necklace, handmade golden chain necklace with a white moonstone charm, 63.50, 6
+- Beaded necklace, handmade beaded necklace with round emerald beads, 89.00, 20
+- Personalised cuff bracelet, handmade golden cuff bracelet with personalised message engraved, 51.75, 20
+- Silver flower bangle, handmade silver bangle bracelet with daisies engraved on it, 55.75, 15
+- Hammered golden ring, handmade 14k gold with a rustic look, 38.00, 5
+- lapis lazuli ring, handmade stirling silver ring with 4 mm gemstone, 22.75, 10  
+
+possible tags:
+- jewellry 
+   -rings      -gold     -turquois 
+   -bracelets  -silver   - onyx          
+   -necklace   -rosegold -lapis lazuli
+   -earrings   -plastic  -tiger eye
+
+- clothing 
+  -pants 
+  -sweatshirt 
+  -t-shirt 
+  -dress 
+
+- furniture 
+  -chair
+  -table
+  -
+
+
+        
