@@ -41,7 +41,31 @@ def set_test_data():
                   "The Netherlands", "467390"]
                ]
 
-    products = []
+    products = [
+        ["Sunflower studs", "handmade plastic earing studs for summer and spring",
+         5.00, 3],
+         
+         ["Silver Moon studs", "handmade moon earing silver studs with a stirling silver back",
+         13.00, 16],
+         
+         ["Moonstone charm necklace", "handmade golden chain necklace with a white moonstone charm",
+         63.50, 6],
+         
+         ["Beaded necklace", "handmade beaded necklace with round emerald beads",
+          90.25, 20],
+          
+          ["Personalised cuff bracelet", "handmade 14k golden cuff bracelet with a personalised message engraved on it",
+           55.75, 15],
+
+           ["Silver flower bangle", "handmade silver bangle bracelet with daisies engraved on it",
+            51.75, 15],
+
+            ["Rustic golden ring", "handmade 14k golden hammered ring", 
+             38.00, 5],
+
+             ["Lapis lazuli ring", "handmade sirling silver ring with 4 mm gemstone", 
+              22.75, 10]
+    ]
 
     tags = []
 
@@ -60,3 +84,11 @@ def set_test_data():
                     city = city,
                     country = country,
                     bank_account_number = account_nr)
+        
+    for product in products:
+        name, description, price, stock = product
+        Product.create(name = name,
+                       description = description,
+                       price_per_unit = price,
+                       quantity_in_stock = stock)
+        
