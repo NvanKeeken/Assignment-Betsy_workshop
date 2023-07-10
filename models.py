@@ -29,14 +29,14 @@ class Product(BaseModel):
    price_per_unit = DecimalField(decimal_places=2) # or floatfield
    quantity_in_stock = IntegerField()
 
-class Tag():
+class Tag(BaseModel):
    name = CharField(unique= True)
 
-class ProductTag():
+class ProductTag(BaseModel):
    tag = ForeignKeyField(Tag, backref= "products")
    product = ForeignKeyField(Product, backref="tags")
 
-class Transactions():
+class Transactions(BaseModel):
    product = ForeignKeyField(Product, backref="sales")
    buyer = ForeignKeyField(User, backref="purchases")
    quantity_bought = IntegerField()
