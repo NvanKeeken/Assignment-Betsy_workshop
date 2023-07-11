@@ -73,7 +73,9 @@ def set_test_data():
 
     transactions = []
 
-    product_tags = []
+    product_tags = [(1, [4, 8]), (2, [4, 6]), (3, [3, 5, 10]),
+                    (4, [3, 11]), (5, [2, 5]), (6, [2, 6]),
+                    (7, [1, 5]), (8, [1, 12])]
 
     # Insert new data per table
     for user in users:
@@ -95,3 +97,10 @@ def set_test_data():
                        quantity_in_stock = stock)
     for tag in tags:
          Tag.create(name = tag)
+
+    for product, tag_names in product_tags:
+       
+        product = Product.get(Product.id == product)
+        for tag_name in tag_names:
+            tag = Tag.get(Tag.id == tag_name)
+            ProductTag.create(tag= tag, product= product)
