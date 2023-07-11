@@ -27,7 +27,9 @@ def add_product_to_catalog(user_id, product):
 
 
 def update_stock(product_id, new_quantity):
-    ...
+    product = Product.get(Product.id == product_id)
+    product.quantity_in_stock = new_quantity
+    product.save()
 
 
 def purchase_product(product_id, buyer_id, quantity):
