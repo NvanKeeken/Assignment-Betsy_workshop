@@ -4,6 +4,7 @@ __human_name__ = "Betsy Webshop"
 
 # Add your code after this line
 
+from models import (User, Product, Transactions, Tag, ProductTag, db)
 
 def search(term):
     ...
@@ -14,7 +15,11 @@ def list_user_products(user_id):
 
 
 def list_products_per_tag(tag_id):
-    ...
+    products_per_tag = []
+    products = ProductTag.select().where(ProductTag.tag == tag_id)
+    for product in products:
+       products_per_tag.append(product.product)
+    return products_per_tag
 
 
 def add_product_to_catalog(user_id, product):
