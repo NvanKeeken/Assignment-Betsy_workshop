@@ -67,7 +67,9 @@ def set_test_data():
               22.75, 10]
     ]
 
-    tags = []
+    tags = ["ring", "bracelet", "necklace", "earrings",
+            "gold", "silver", "rosegold", "plastic",
+            "tiger eye", "moonstone", "emerald", "lapis lazuli"]
 
     transactions = []
 
@@ -91,4 +93,5 @@ def set_test_data():
                        description = description,
                        price_per_unit = price,
                        quantity_in_stock = stock)
-        
+    for tag in tags:
+         Tag.create(name = tag)
