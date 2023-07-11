@@ -71,7 +71,11 @@ def set_test_data():
             "gold", "silver", "rosegold", "plastic",
             "tiger eye", "moonstone", "emerald", "lapis lazuli"]
 
-    transactions = []
+    transactions = [
+        ["Beaded necklace", "Helena", "Joosten", 3],
+        ["Silver Moon studs", "Louise", "Hendriks", 1],
+        ["Personalised cuff bracelet", "Abel", "Oliver", 2]
+    ]
 
     product_tags = [(1, [4, 8]), (2, [4, 6]), (3, [3, 5, 10]),
                     (4, [3, 11]), (5, [2, 5]), (6, [2, 6]),
@@ -97,9 +101,16 @@ def set_test_data():
                        quantity_in_stock = stock)
     for tag in tags:
          Tag.create(name = tag)
-
+    
+    for product, firstname, lastname, quantity in transactions:
+        buyer = User.get(User.first_name == firstname and User.last_name == lastname)
+        product_id = Product.get(Product.name == product)
+        Transactions.create(
+            product = product_id, 
+            buyer = buyer, 
+            quantity_bought = quantity)
+        
     for product, tag_names in product_tags:
-       
         product = Product.get(Product.id == product)
         for tag_name in tag_names:
             tag = Tag.get(Tag.id == tag_name)
