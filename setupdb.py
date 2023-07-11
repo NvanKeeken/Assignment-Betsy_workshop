@@ -7,7 +7,7 @@ def delete_database():
     if os.path.exists(database_path):
         os.remove(database_path)
 
-def set_test_data():
+def populate_test_database():
     db.connect()
 
     db.create_tables([
