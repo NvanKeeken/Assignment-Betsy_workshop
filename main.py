@@ -7,7 +7,9 @@ __human_name__ = "Betsy Webshop"
 from models import (User, Product, Transactions, Tag, ProductTag, db)
 
 def search(term):
-    ...
+    products_contain_search = Product.select().where(Product.name.contains(term))
+    for product in products_contain_search:
+        return product
 
 
 def list_user_products(user_id):
