@@ -1,4 +1,4 @@
-from models import (db, User, Product, Transactions, Tag, ProductTag)
+from models import (db, User, Product, Transactions, Tag, ProductTag, OwnedProduct)
 import os
 
 def delete_database():
@@ -15,7 +15,8 @@ def populate_test_database():
         Product,
         Tag,
         Transactions,
-        ProductTag
+        ProductTag,
+        OwnedProduct
     ])
 
     # define test data per table
@@ -76,7 +77,15 @@ def populate_test_database():
         ["Silver Moon studs", "Louise", "Hendriks", 1],
         ["Personalised cuff bracelet", "Abel", "Oliver", 2]
     ]
+    
+    owned_products = [
+        ["Jenny", "Patterson",["Silver Moon studs", "Moonstone charm necklace"]],
+        ["Dennis", "Jansen", ["Rustic golden ring", "Personalised cuff bracelet"]],
+        ["Abel", "Oliver", ["Lapis lazuli ring"]],
+        ["Louise", "Hendriks", ["Beaded necklace"]],
+        ["Helena", "Joosten", ["Sunflower studs", "Silver flower bangle"]]
 
+    ]
     product_tags = [(1, [4, 8]), (2, [4, 6]), (3, [3, 5, 10]),
                     (4, [3, 11]), (5, [2, 5]), (6, [2, 6]),
                     (7, [1, 5]), (8, [1, 12])]
@@ -110,6 +119,12 @@ def populate_test_database():
             buyer = buyer, 
             quantity_bought = quantity)
         
+    for firstname, lastname, user_products in owned_products:
+        seller = User.get(User.first_name == firstname and User.last_name == lastname)
+        for user_product in user_products:
+            product = Product.get(Product.name == user_product)
+            OwnedProduct.create(seller = seller, product= product) 
+
     for product, tag_names in product_tags:
         product = Product.get(Product.id == product)
         for tag_name in tag_names:
