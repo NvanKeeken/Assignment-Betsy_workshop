@@ -4,7 +4,7 @@ __human_name__ = "Betsy Webshop"
 
 # Add your code after this line
 
-from models import (User, Product, Transactions, Tag, ProductTag, db)
+from models import (User, Product, Transactions, Tag, ProductTag,OwnedProduct,db)
 
 def search(term):
     products_contain_search = Product.select().where(Product.name.contains(term))
@@ -13,7 +13,11 @@ def search(term):
 
 
 def list_user_products(user_id):
-    ...
+    products_of_user = []
+    products_owned_by_user = OwnedProduct.select().where(OwnedProduct.seller == user_id)
+    for product in products_owned_by_user:
+        products_of_user.append(product)
+    return products_of_user
 
 
 def list_products_per_tag(tag_id):
