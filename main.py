@@ -7,9 +7,11 @@ __human_name__ = "Betsy Webshop"
 from models import (User, Product, Transactions, Tag, ProductTag,OwnedProduct,db)
 
 def search(term):
-    products_contain_search = Product.select().where(Product.name.contains(term))
+    product_contain_term =[]
+    products_contain_search = Product.select().where(Product.name.contains(term) | Product.description.contains(term))
     for product in products_contain_search:
-        return product
+        product_contain_term.append(product)
+    return product_contain_term
 
 
 def list_user_products(user_id):
@@ -29,8 +31,17 @@ def list_products_per_tag(tag_id):
 
 
 def add_product_to_catalog(user_id, product):
-    ...
-
+    name,description, price, quantity = product
+    new_product,_ = Product.get_or_create(
+        name= name,
+        defaults= {
+            "description": description,
+            "price_per_unit": price,
+            "quantity_in_stock": quantity}
+    )
+    OwnedProduct.create(seller= user_id, product= new_product)
+# add_product_to_catalog(1,["Diamond ring", "handmade diamond ring", 
+#              34.00, 5])
 
 def update_stock(product_id, new_quantity):
     product = Product.get(Product.id == product_id)
@@ -43,4 +54,9 @@ def purchase_product(product_id, buyer_id, quantity):
 
 
 def remove_product(product_id):
-    ...
+    # product_removed = Product.get(Product.id == product_id)
+    # product_removed.delete_instance()
+    product_removed =(OwnedProduct.select(OwnedProduct, Product)
+                      .join(Product)
+                      .where(OwnedProduct.id) == product_id)
+
