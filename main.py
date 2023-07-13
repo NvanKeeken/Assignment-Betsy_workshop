@@ -10,7 +10,7 @@ def search(term):
     product_contain_term =[]
     products_contain_search = Product.select().where(Product.name.contains(term) | Product.description.contains(term))
     for product in products_contain_search:
-        product_contain_term.append(product)
+        product_contain_term.append(product.name)
     return product_contain_term
 
 
@@ -48,9 +48,20 @@ def update_stock(product_id, new_quantity):
     product.quantity_in_stock = new_quantity
     product.save()
 
+"""To handle a purchase there are two main things that need to happen, 
+a new transaction needs to be added to a buyer in Transactions model
+and the stock of the product needs to be updatet """
 
 def purchase_product(product_id, buyer_id, quantity):
-    ...
+    # Adds a new transaction to buyer 
+    Transactions.create(product= product_id, 
+                         buyer= buyer_id,
+                         quantity_bought= quantity)
+    # Updates stock of the product 
+    product_quantity = Product.get(Product.id == product_id).quantity_in_stock
+    new_quantity_in_stock = product_quantity - quantity
+    if new_quantity_in_stock >= 0:
+       update_stock(product_id, new_quantity_in_stock)
 
 
 def remove_product(product_id):
