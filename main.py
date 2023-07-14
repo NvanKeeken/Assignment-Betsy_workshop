@@ -35,21 +35,20 @@ def list_products_per_tag(tag_id):
 
 
 def add_product_to_catalog(user_id, product):
-    # name,description, price, quantity= product
-    # new_product,_ = Product.get_or_create(
-    #     name= name,
-    #     defaults= {
-    #         "description": description,
-    #         "price_per_unit": price,
-    #         "quantity_in_stock": quantity,
-    #         "owner": user_id
-    #         }
-    # )
-    # return new_product
+    name,description, price, quantity= product
+    new_product,_ = Product.get_or_create(
+        name= name,
+        defaults= {
+            "description": description,
+            "price_per_unit": price,
+            "quantity_in_stock": quantity,
+            "owner": user_id
+            }
+    )
+    return new_product.name
     # OwnedProduct.create(seller= user_id, product= new_product)
 # add_product_to_catalog(1,["Diamond ring", "handmade diamond ring", 
-#              34.00, 5])
-  pass   
+#               34.00, 5,])   
 
 def update_stock(product_id, new_quantity):
     product = Product.get(Product.id == product_id)
@@ -75,17 +74,3 @@ def purchase_product(product_id, buyer_id, quantity):
 def remove_product(product_id):
     product_removed = Product.get(Product.id == product_id)
     product_removed.delete_instance()
-    
-    # product_removed = (OwnedProduct.select()
-    #                    .where(OwnedProduct.product_id == product_id))
-    # for product in product_removed:
-    #     product.delete_instance()
-
-    # query = (OwnedProduct
-    #      .select()
-    #      .join(Product, JOIN.LEFT_OUTER)  # Joins user -> tweet.
-    #      .join(OwnedProduct, JOIN.LEFT_OUTER)
-    #      )  # Joins tweet -> favorite.
-   
-    # for product in query:
-    #   print(product)
