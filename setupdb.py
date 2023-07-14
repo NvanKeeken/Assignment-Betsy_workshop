@@ -21,23 +21,23 @@ def populate_test_database():
 
     # define test data per table
     users = [
-              ["Louise", "Hendriks", "Bekerbaan", 
+              ["PrettyStones","Louise", "Hendriks", "Bekerbaan", 
               "4", "6333 EZ", "Schimmert", 
               "The Netherlands", "457868"],
 
-              ["Denis", "Jansen", "Hanewei", 
+              ["RusticMetals","Denis", "Jansen", "Hanewei", 
                "8a", "6344 GH", "Schinnen",
                "The Netherlands", "567897"],
 
-               ["Abel", "Oliver", "Baker Street", 
+               ["Abel-Crystals","Abel", "Oliver", "Baker Street", 
                 "11", "NW1", "London", 
                 "UK", "678967"],
 
-                ["Jenny", "Patterson", "Cannon Street", 
+                ["Jenny-Jewels","Jenny", "Patterson", "Cannon Street", 
                  "12", "B2 5EP", "Birmingham", 
                  "UK", "56789"],
 
-                 ["Helena", "Joosten", "Hoofdstraat", 
+                 ["Sunny-Jewelry","Helena", "Joosten", "Hoofdstraat", 
                   "62", "7311 At", "Apeldoorn", 
                   "The Netherlands", "467390"]
                ]
@@ -69,28 +69,28 @@ def populate_test_database():
     # ]
     products = [
         ["Sunflower studs", "handmade plastic earing studs for summer and spring",
-         5.00, 3,5],
+         5.00, 3,"Sunny-Jewelry"],
          
          ["Silver Moon studs", "handmade moon earing silver studs with a stirling silver back",
-         13.00, 16,4],
+         13.00, 16,"Jenny-Jewels"],
          
          ["Moonstone charm necklace", "handmade golden chain necklace with a white moonstone charm",
-         63.50, 6,4],
+         63.50, 6,"Jenny-Jewels"],
          
          ["Beaded necklace", "handmade beaded necklace with round emerald beads",
-          90.25, 20,1],
+          90.25, 20,"PrettyStones"],
           
           ["Personalised cuff bracelet", "handmade 14k golden cuff bracelet with a personalised message engraved on it",
-           55.75, 15,2],
+           55.75, 15,"RusticMetals"],
 
            ["Silver flower bangle", "handmade silver bangle bracelet with daisies engraved on it",
-            51.75, 15,5],
+            51.75, 15,"Sunny-Jewelry"],
 
             ["Rustic golden ring", "handmade 14k golden hammered ring", 
-             38.00, 5,2],
+             38.00, 5,"RusticMetals"],
 
              ["Lapis lazuli ring", "handmade sirling silver ring with 4 mm gemstone", 
-              22.75, 10,3]
+              22.75, 10,"Abels-Crystals"]
     ]
     tags = ["ring", "bracelet", "necklace", "earrings",
             "gold", "silver", "rosegold", "plastic",
@@ -116,8 +116,9 @@ def populate_test_database():
 
     # Insert new data per table
     for user in users:
-        firstname, lastname, street, street_nr, postal_code, city, country, account_nr = user
-        User.create(first_name = firstname, 
+        username, firstname, lastname, street, street_nr, postal_code, city, country, account_nr = user
+        User.create(username = username,
+                    first_name = firstname, 
                     last_name = lastname,
                     street_name = street,
                     house_number = street_nr,
@@ -128,11 +129,12 @@ def populate_test_database():
         
     for product in products:
         name, description, price, stock, owner = product
+        product_owner = User.get(User.username == owner)
         Product.create(name = name,
                        description = description,
                        price_per_unit = price,
                        quantity_in_stock = stock,
-                       owner = owner)
+                       owner = product_owner)
     for tag in tags:
          Tag.create(name = tag)
     

@@ -3,8 +3,7 @@ __winc_id__ = "d7b474e9b3a54d23bca54879a4f1855b"
 __human_name__ = "Betsy Webshop"
 
 # Add your code after this line
-from models import (User, Product, Transactions, Tag, ProductTag,db)
-from peewee import JOIN
+from models import (User, Product, Transactions,ProductTag)
 
 def search(term):
     product_contain_term =[]
@@ -21,7 +20,6 @@ def list_user_products(user_id):
         .join(User)
         .where(Product.owner == user_id)
     )
-    # products_owned_by_user = OwnedProduct.select().where(OwnedProduct.seller == user_id)
     for product in products_owned_by_user:
          products_of_user.append(product.name)
     return products_of_user
@@ -33,7 +31,6 @@ def list_products_per_tag(tag_id):
         .join(Product)
         .where(ProductTag.tag == tag_id)
     )
-    # products = ProductTag.select().where(ProductTag.tag == tag_id)
     for product in products:
         products_per_tag.append(product.product.name)
     return products_per_tag
@@ -50,10 +47,7 @@ def add_product_to_catalog(user_id, product):
             "owner": user_id
             }
     )
-    return new_product.name
-    # OwnedProduct.create(seller= user_id, product= new_product)
-# add_product_to_catalog(1,["Diamond ring", "handmade diamond ring", 
-#               34.00, 5,])   
+    return new_product.name  
 
 def update_stock(product_id, new_quantity):
     product = Product.get(Product.id == product_id)
