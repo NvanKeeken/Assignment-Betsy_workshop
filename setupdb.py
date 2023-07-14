@@ -1,4 +1,4 @@
-from models import (db, User, Product, Transactions, Tag, ProductTag, OwnedProduct)
+from models import (db, User, Product, Transactions, Tag, ProductTag)
 import os
 
 def delete_database():
@@ -16,7 +16,7 @@ def populate_test_database():
         Tag,
         Transactions,
         ProductTag,
-        OwnedProduct
+        # OwnedProduct
     ])
 
     # define test data per table
@@ -42,32 +42,56 @@ def populate_test_database():
                   "The Netherlands", "467390"]
                ]
 
+    # products = [
+    #     ["Sunflower studs", "handmade plastic earing studs for summer and spring",
+    #      5.00, 3],
+         
+    #      ["Silver Moon studs", "handmade moon earing silver studs with a stirling silver back",
+    #      13.00, 16],
+         
+    #      ["Moonstone charm necklace", "handmade golden chain necklace with a white moonstone charm",
+    #      63.50, 6],
+         
+    #      ["Beaded necklace", "handmade beaded necklace with round emerald beads",
+    #       90.25, 20],
+          
+    #       ["Personalised cuff bracelet", "handmade 14k golden cuff bracelet with a personalised message engraved on it",
+    #        55.75, 15],
+
+    #        ["Silver flower bangle", "handmade silver bangle bracelet with daisies engraved on it",
+    #         51.75, 15],
+
+    #         ["Rustic golden ring", "handmade 14k golden hammered ring", 
+    #          38.00, 5],
+
+    #          ["Lapis lazuli ring", "handmade sirling silver ring with 4 mm gemstone", 
+    #           22.75, 10]
+    # ]
     products = [
         ["Sunflower studs", "handmade plastic earing studs for summer and spring",
-         5.00, 3],
+         5.00, 3,5],
          
          ["Silver Moon studs", "handmade moon earing silver studs with a stirling silver back",
-         13.00, 16],
+         13.00, 16,4],
          
          ["Moonstone charm necklace", "handmade golden chain necklace with a white moonstone charm",
-         63.50, 6],
+         63.50, 6,4],
          
          ["Beaded necklace", "handmade beaded necklace with round emerald beads",
-          90.25, 20],
+          90.25, 20,1],
           
           ["Personalised cuff bracelet", "handmade 14k golden cuff bracelet with a personalised message engraved on it",
-           55.75, 15],
+           55.75, 15,2],
 
            ["Silver flower bangle", "handmade silver bangle bracelet with daisies engraved on it",
-            51.75, 15],
+            51.75, 15,5],
 
             ["Rustic golden ring", "handmade 14k golden hammered ring", 
-             38.00, 5],
+             38.00, 5,2],
 
              ["Lapis lazuli ring", "handmade sirling silver ring with 4 mm gemstone", 
-              22.75, 10]
+              22.75, 10,3]
     ]
-
     tags = ["ring", "bracelet", "necklace", "earrings",
             "gold", "silver", "rosegold", "plastic",
             "tiger eye", "moonstone", "emerald", "lapis lazuli"]
@@ -103,11 +127,12 @@ def populate_test_database():
                     bank_account_number = account_nr)
         
     for product in products:
-        name, description, price, stock = product
+        name, description, price, stock, owner = product
         Product.create(name = name,
                        description = description,
                        price_per_unit = price,
-                       quantity_in_stock = stock)
+                       quantity_in_stock = stock,
+                       owner = owner)
     for tag in tags:
          Tag.create(name = tag)
     
@@ -119,11 +144,11 @@ def populate_test_database():
             buyer = buyer, 
             quantity_bought = quantity)
         
-    for firstname, lastname, user_products in owned_products:
-        seller = User.get(User.first_name == firstname and User.last_name == lastname)
-        for user_product in user_products:
-            product = Product.get(Product.name == user_product)
-            OwnedProduct.create(seller = seller, product= product) 
+    # for firstname, lastname, user_products in owned_products:
+    #     seller = User.get(User.first_name == firstname and User.last_name == lastname)
+    #     for user_product in user_products:
+    #         product = Product.get(Product.name == user_product)
+    #         OwnedProduct.create(seller = seller, product= product) 
 
     for product, tag_names in product_tags:
         product = Product.get(Product.id == product)
