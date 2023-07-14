@@ -15,6 +15,7 @@ class BaseModel(Model):
         database = db
 
 class User(BaseModel):
+  username = CharField(unique= True)
   first_name = CharField()
   last_name = CharField()
   street_name = CharField()
