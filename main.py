@@ -3,8 +3,8 @@ __winc_id__ = "d7b474e9b3a54d23bca54879a4f1855b"
 __human_name__ = "Betsy Webshop"
 
 # Add your code after this line
-
-from models import (User, Product, Transactions, Tag, ProductTag,OwnedProduct,db)
+from models import (User, Product, Transactions, Tag, ProductTag,db)
+from peewee import JOIN
 
 def search(term):
     product_contain_term =[]
@@ -16,11 +16,15 @@ def search(term):
 
 def list_user_products(user_id):
     products_of_user = []
-    products_owned_by_user = OwnedProduct.select().where(OwnedProduct.seller == user_id)
+    products_owned_by_user= (
+        Product.select()
+        .join(User)
+        .where(Product.owner == user_id)
+    )
+    # products_owned_by_user = OwnedProduct.select().where(OwnedProduct.seller == user_id)
     for product in products_owned_by_user:
-        products_of_user.append(product)
+         products_of_user.append(product.name)
     return products_of_user
-
 
 def list_products_per_tag(tag_id):
     products_per_tag = []
@@ -31,17 +35,21 @@ def list_products_per_tag(tag_id):
 
 
 def add_product_to_catalog(user_id, product):
-    name,description, price, quantity = product
-    new_product,_ = Product.get_or_create(
-        name= name,
-        defaults= {
-            "description": description,
-            "price_per_unit": price,
-            "quantity_in_stock": quantity}
-    )
-    OwnedProduct.create(seller= user_id, product= new_product)
+    # name,description, price, quantity= product
+    # new_product,_ = Product.get_or_create(
+    #     name= name,
+    #     defaults= {
+    #         "description": description,
+    #         "price_per_unit": price,
+    #         "quantity_in_stock": quantity,
+    #         "owner": user_id
+    #         }
+    # )
+    # return new_product
+    # OwnedProduct.create(seller= user_id, product= new_product)
 # add_product_to_catalog(1,["Diamond ring", "handmade diamond ring", 
 #              34.00, 5])
+  pass   
 
 def update_stock(product_id, new_quantity):
     product = Product.get(Product.id == product_id)
@@ -65,9 +73,19 @@ def purchase_product(product_id, buyer_id, quantity):
 
 
 def remove_product(product_id):
-    # product_removed = Product.get(Product.id == product_id)
-    # product_removed.delete_instance()
-    product_removed =(OwnedProduct.select(OwnedProduct, Product)
-                      .join(Product)
-                      .where(OwnedProduct.id) == product_id)
+    product_removed = Product.get(Product.id == product_id)
+    product_removed.delete_instance()
+    
+    # product_removed = (OwnedProduct.select()
+    #                    .where(OwnedProduct.product_id == product_id))
+    # for product in product_removed:
+    #     product.delete_instance()
 
+    # query = (OwnedProduct
+    #      .select()
+    #      .join(Product, JOIN.LEFT_OUTER)  # Joins user -> tweet.
+    #      .join(OwnedProduct, JOIN.LEFT_OUTER)
+    #      )  # Joins tweet -> favorite.
+   
+    # for product in query:
+    #   print(product)
