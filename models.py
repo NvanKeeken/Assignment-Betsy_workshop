@@ -26,7 +26,7 @@ class User(BaseModel):
   bank_account_number = CharField(unique = True)
 
 class Product(BaseModel):
-   name = CharField()
+   name = CharField(index=True)
    description = TextField()
    price_per_unit = DecimalField(decimal_places=2) # or floatfield
    quantity_in_stock = IntegerField()
