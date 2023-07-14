@@ -30,7 +30,7 @@ class Product(BaseModel):
    description = TextField()
    price_per_unit = DecimalField(decimal_places=2) # or floatfield
    quantity_in_stock = IntegerField()
-   owner = ForeignKeyField(User)
+   owner = ForeignKeyField(User, backref="owned_products")
 
 # class OwnedProduct (BaseModel):
 #    seller = ForeignKeyField(User, backref="owned_products")
