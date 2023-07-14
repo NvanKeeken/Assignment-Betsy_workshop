@@ -28,9 +28,14 @@ def list_user_products(user_id):
 
 def list_products_per_tag(tag_id):
     products_per_tag = []
-    products = ProductTag.select().where(ProductTag.tag == tag_id)
+    products = (
+        ProductTag.select()
+        .join(Product)
+        .where(ProductTag.tag == tag_id)
+    )
+    # products = ProductTag.select().where(ProductTag.tag == tag_id)
     for product in products:
-       products_per_tag.append(product.product)
+        products_per_tag.append(product.product.name)
     return products_per_tag
 
 
