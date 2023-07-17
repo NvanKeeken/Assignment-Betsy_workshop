@@ -102,9 +102,14 @@ def populate_test_database():
         ["Personalised cuff bracelet", "Abel", "Oliver", 2]
     ]
     
-    product_tags = [(1, [4, 8]), (2, [4, 6]), (3, [3, 5, 10]),
-                    (4, [3, 11]), (5, [2, 5]), (6, [2, 6]),
-                    (7, [1, 5]), (8, [1, 12])]
+    product_tags = [("Sunflower studs", ["earrings", "plastic"]), 
+                    ("Silver Moon studs", ["earrings", "silver"]),
+                    ("Moonstone charm necklace", ["necklace", "gold","moonstone"]),
+                    ("Beaded necklace", ["necklace","gold", "emerald"]),
+                    ("Personalised cuff bracelet", ["bracelet", "gold"]), 
+                    ("Silver flower bangle", ["ring", "silver"]),
+                    ("Rustic golden ring", ["ring", "gold"]), 
+                    ("Lapis lazuli ring", ["ring", "lapis lazuli"])]
 
     # Insert new data per table
     for user in users:
@@ -140,8 +145,8 @@ def populate_test_database():
             quantity_bought = quantity)
         
     for product, tag_names in product_tags:
-        product = Product.get(Product.id == product)
+        product = Product.get(Product.name == product)
         for tag_name in tag_names:
-            tag = Tag.get(Tag.id == tag_name)
+            tag = Tag.get(Tag.name == tag_name)
             ProductTag.create(tag= tag, product= product)
 populate_test_database()
