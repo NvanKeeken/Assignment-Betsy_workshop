@@ -90,7 +90,7 @@ def populate_test_database():
              38.00, 5,"RusticMetals"],
 
              ["Lapis lazuli ring", "handmade sirling silver ring with 4 mm gemstone", 
-              22.75, 10,"Abels-Crystals"]
+              22.75, 10,"Abel-Crystals"]
     ]
     tags = ["ring", "bracelet", "necklace", "earrings",
             "gold", "silver", "rosegold", "plastic",
@@ -129,7 +129,7 @@ def populate_test_database():
         
     for product in products:
         name, description, price, stock, owner = product
-        product_owner = User.get(User.username == owner)
+        product_owner = User.get(User.username == "Abel-Crystals")
         Product.create(name = name,
                        description = description,
                        price_per_unit = price,
@@ -157,3 +157,4 @@ def populate_test_database():
         for tag_name in tag_names:
             tag = Tag.get(Tag.id == tag_name)
             ProductTag.create(tag= tag, product= product)
+populate_test_database()
