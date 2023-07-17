@@ -69,6 +69,9 @@ ProductTag:
 - product (id)
 - tag (id)
 
+OwnedProduct :
+- product (id)
+- user (id)
 ## Constraints 
 Constraints are restrictions imposed on the possible values that can be put in a field. One such constraint is primary key.
 
@@ -92,11 +95,11 @@ Constraints are restrictions imposed on the possible values that can be put in a
 
 ## TEST DATA
 possible users:
-- Louise, Hendriks, bekerbaan, 4,6333 EZ, Schimmert, The Netherlands, 457868 
-- Denis, Jansen, hanenwei, 8, 6344 GH, Schinnen, The Netherlands, 567897
-- Abel, Oliver, Baker street, 11, NW1, London, UK, 678967,
-- Jenny, Patterson, Cannon street, 12, B2 5EP, Birmingham, Uk, 56789
-- Helena, Joosten, Hoofdstraat, 62, 7311 AT, Apeldoorn, The Netherlands, 467390
+- PrettyStones, Louise, Hendriks, bekerbaan, 4,6333 EZ, Schimmert, The Netherlands, 457868 
+- RusticMetals, Denis, Jansen, hanenwei, 8, 6344 GH, Schinnen, The Netherlands, 567897
+- Abels-Crystals, Abel, Oliver, Baker street, 11, NW1, London, UK, 678967,
+- Jenny-Jewels,Jenny, Patterson, Cannon street, 12, B2 5EP, Birmingham, Uk, 56789
+- Sunny-Jewelry, Helena, Joosten, Hoofdstraat, 62, 7311 AT, Apeldoorn, The Netherlands, 467390
 
 possible products:
 - Sunflower studs, handmade plastic earing studs cute for summer and spring, 5.00, 3
@@ -110,8 +113,8 @@ possible products:
 
 possible tags:
 - jewellry 
-   -rings      -gold     -turquois 
-   -bracelets  -silver   - onyx          
+   -ring      -gold
+   -bracelet   -silver   - emerald         
    -necklace   -rosegold -lapis lazuli
    -earrings   -plastic  -tiger eye
 
@@ -126,5 +129,31 @@ possible tags:
   -table
   -
 
+Possible productTag:
+- 1, earrings, plastic
+- 2, earings, silver
+- 3, necklace, gold, moonstone
+-4, necklace, emerald 
+-5,bracelet, gold 
+-6, bracelet, silver
+-7, ring, gold
+-7, ring, lapis lazuli
 
+possible transactions:
+- product buyer, quantity_bought
+- Silver Moon studs, Louise, Hendriks, 1
+-Personalised cuff bracelet, Abel, Oliver, 2
+- Beaded necklace, Helena, Joosten, 3 
+
+possible ownend products:
+- Jenny, Patterson, Silver Moon studs, Moonstone Charm necklace 
+-Denis, Jansen, Hammerd golden ring, Personalised cuff bracelet 
+- Abel, Oliver, Lapis lazuli ring
+-Louise, Hendriks, Beaded necklace 
+-Helena, Joosten, Sunflower studs, Silver flower bangle  
         
+nog moeten doen:
+- toevoegen username unique and email
+- integer Check constraint
+- constraint stock niet kleiner dan 0
+- try catch

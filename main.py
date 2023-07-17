@@ -3,8 +3,7 @@ __winc_id__ = "d7b474e9b3a54d23bca54879a4f1855b"
 __human_name__ = "Betsy Webshop"
 
 # Add your code after this line
-from models import (User, Product, Transactions,ProductTag)
-
+from models import (User, Product, Transactions, ProductTag)
 def search(term):
     product_contain_term =[]
     products_contain_search = Product.select().where(Product.name.contains(term) | Product.description.contains(term))
