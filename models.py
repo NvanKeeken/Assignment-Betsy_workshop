@@ -16,11 +16,12 @@ class BaseModel(Model):
 
 class User(BaseModel):
   username = CharField(unique= True)
+  email = CharField(unique=True)
   first_name = CharField()
   last_name = CharField()
   street_name = CharField()
   house_number = CharField() # charfield because house number can have a addition of a letter
-  postal_code = CharField(max_length=10) # max amount of digits is 10 for postal code in the world 
+  postal_code = CharField(max_length=10) # max length is 10 for postal code in the world 
   city = CharField()
   country = CharField(max_length=60) # longest country name has 56 charaters 
   bank_account_number = CharField(unique = True)

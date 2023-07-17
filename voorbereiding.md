@@ -101,6 +101,14 @@ possible users:
 - Jenny-Jewels,Jenny, Patterson, Cannon street, 12, B2 5EP, Birmingham, Uk, 56789
 - Sunny-Jewelry, Helena, Joosten, Hoofdstraat, 62, 7311 AT, Apeldoorn, The Netherlands, 467390
 
+email:
+prettystones@gmail.com
+d.jansen@hotmail.com
+abel.oliver@gmail.com
+jenny333@live.nl
+sunnyjewelry@gmail.com
+
+
 possible products:
 - Sunflower studs, handmade plastic earing studs cute for summer and spring, 5.00, 3
 - Silver Moon studs, handmade Moon earing studs from silver with stirling silver backs, 13.00, 16

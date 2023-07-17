@@ -21,23 +21,23 @@ def populate_test_database():
 
     # define test data per table
     users = [
-              ["PrettyStones","Louise", "Hendriks", "Bekerbaan", 
+              ["PrettyStones","prettystones@gmail.com","Louise", "Hendriks", "Bekerbaan", 
               "4", "6333 EZ", "Schimmert", 
               "The Netherlands", "457868"],
 
-              ["RusticMetals","Denis", "Jansen", "Hanewei", 
+              ["RusticMetals","d.jansen@hotmail.com","Denis", "Jansen", "Hanewei", 
                "8a", "6344 GH", "Schinnen",
                "The Netherlands", "567897"],
 
-               ["Abel-Crystals","Abel", "Oliver", "Baker Street", 
+               ["Abel-Crystals","abel.oliver@gmail.com","Abel", "Oliver", "Baker Street", 
                 "11", "NW1", "London", 
                 "UK", "678967"],
 
-                ["Jenny-Jewels","Jenny", "Patterson", "Cannon Street", 
+                ["Jenny-Jewels","jenny333@live.nl","Jenny", "Patterson", "Cannon Street", 
                  "12", "B2 5EP", "Birmingham", 
                  "UK", "56789"],
 
-                 ["Sunny-Jewelry","Helena", "Joosten", "Hoofdstraat", 
+                 ["Sunny-Jewelry","sunnyjewelry@gmail.com","Helena", "Joosten", "Hoofdstraat", 
                   "62", "7311 At", "Apeldoorn", 
                   "The Netherlands", "467390"]
                ]
@@ -102,22 +102,15 @@ def populate_test_database():
         ["Personalised cuff bracelet", "Abel", "Oliver", 2]
     ]
     
-    owned_products = [
-        ["Jenny", "Patterson",["Silver Moon studs", "Moonstone charm necklace"]],
-        ["Dennis", "Jansen", ["Rustic golden ring", "Personalised cuff bracelet"]],
-        ["Abel", "Oliver", ["Lapis lazuli ring"]],
-        ["Louise", "Hendriks", ["Beaded necklace"]],
-        ["Helena", "Joosten", ["Sunflower studs", "Silver flower bangle"]]
-
-    ]
     product_tags = [(1, [4, 8]), (2, [4, 6]), (3, [3, 5, 10]),
                     (4, [3, 11]), (5, [2, 5]), (6, [2, 6]),
                     (7, [1, 5]), (8, [1, 12])]
 
     # Insert new data per table
     for user in users:
-        username, firstname, lastname, street, street_nr, postal_code, city, country, account_nr = user
+        username, email, firstname, lastname, street, street_nr, postal_code, city, country, account_nr = user
         User.create(username = username,
+                    email = email,
                     first_name = firstname, 
                     last_name = lastname,
                     street_name = street,
@@ -129,7 +122,7 @@ def populate_test_database():
         
     for product in products:
         name, description, price, stock, owner = product
-        product_owner = User.get(User.username == "Abel-Crystals")
+        product_owner = User.get(User.username == owner)
         Product.create(name = name,
                        description = description,
                        price_per_unit = price,
@@ -146,12 +139,6 @@ def populate_test_database():
             buyer = buyer, 
             quantity_bought = quantity)
         
-    # for firstname, lastname, user_products in owned_products:
-    #     seller = User.get(User.first_name == firstname and User.last_name == lastname)
-    #     for user_product in user_products:
-    #         product = Product.get(Product.name == user_product)
-    #         OwnedProduct.create(seller = seller, product= product) 
-
     for product, tag_names in product_tags:
         product = Product.get(Product.id == product)
         for tag_name in tag_names:
