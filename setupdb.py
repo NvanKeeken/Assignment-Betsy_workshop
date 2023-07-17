@@ -23,23 +23,23 @@ def populate_test_database():
     users = [
               ["PrettyStones","prettystones@gmail.com","Louise", "Hendriks", "Bekerbaan", 
               "4", "6333 EZ", "Schimmert", 
-              "The Netherlands", "457868"],
+              "The Netherlands","IDEAL","457868"],
 
               ["RusticMetals","d.jansen@hotmail.com","Denis", "Jansen", "Hanewei", 
                "8a", "6344 GH", "Schinnen",
-               "The Netherlands", "567897"],
+               "The Netherlands","Paypal","567897"],
 
                ["Abel-Crystals","abel.oliver@gmail.com","Abel", "Oliver", "Baker Street", 
                 "11", "NW1", "London", 
-                "UK", "678967"],
+                "UK","Creditcard" ,"678967"],
 
                 ["Jenny-Jewels","jenny333@live.nl","Jenny", "Patterson", "Cannon Street", 
                  "12", "B2 5EP", "Birmingham", 
-                 "UK", "56789"],
+                 "UK","Creditcard" ,"56789"],
 
                  ["Sunny-Jewelry","sunnyjewelry@gmail.com","Helena", "Joosten", "Hoofdstraat", 
                   "62", "7311 At", "Apeldoorn", 
-                  "The Netherlands", "467390"]
+                  "The Netherlands","IDEAL", "467390"]
                ]
 
     # products = [
@@ -113,7 +113,7 @@ def populate_test_database():
 
     # Insert new data per table
     for user in users:
-        username, email, firstname, lastname, street, street_nr, postal_code, city, country, account_nr = user
+        username, email, firstname, lastname, street, street_nr, postal_code, city, country, billing_method, account_nr = user
         User.create(username = username,
                     email = email,
                     first_name = firstname, 
@@ -123,6 +123,7 @@ def populate_test_database():
                     postal_code = postal_code,
                     city = city,
                     country = country,
+                    billing_method = billing_method,
                     bank_account_number = account_nr)
         
     for product in products:

@@ -5,7 +5,8 @@ from peewee import (Model,
                     ForeignKeyField, 
                     IntegerField, 
                     DecimalField,
-                    TextField)
+                    TextField,
+                    BooleanField)
 from peewee import Check
 db = SqliteDatabase("betsy.db")
 
@@ -24,7 +25,9 @@ class User(BaseModel):
   postal_code = CharField(max_length=10) # max length is 10 for postal code in the world 
   city = CharField()
   country = CharField(max_length=60) # longest country name has 56 charaters 
+  billing_method = CharField()
   bank_account_number = CharField(unique = True)
+
 
 class Product(BaseModel):
    name = CharField(index=True)

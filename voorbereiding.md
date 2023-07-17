@@ -161,7 +161,7 @@ possible ownend products:
 -Helena, Joosten, Sunflower studs, Silver flower bangle  
         
 nog moeten doen:
-- toevoegen username unique and email
-- integer Check constraint
-- constraint stock niet kleiner dan 0
 - try catch
+- billing method choices
+- bulk insert
+
