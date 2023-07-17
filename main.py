@@ -3,7 +3,7 @@ __winc_id__ = "d7b474e9b3a54d23bca54879a4f1855b"
 __human_name__ = "Betsy Webshop"
 
 # Add your code after this line
-from models import (User, Product, Transactions, ProductTag)
+from models import (User, Product, Transactions, ProductTag,Tag)
 def search(term):
     product_contain_term =[]
     products_contain_search = Product.select().where(Product.name.contains(term) | Product.description.contains(term))
@@ -34,9 +34,13 @@ def list_products_per_tag(tag_id):
         products_per_tag.append(product.product.name)
     return products_per_tag
 
-
+"""There are two parts to adding a product to the catalog:
+first you need to add product to Product catalog and second you need to
+add their tags to ProductTag """
 def add_product_to_catalog(user_id, product):
-    name,description, price, quantity= product
+    name,description, price, quantity,tags= product
+
+    #Checks if product is already in catalog, if not it will create it 
     new_product,_ = Product.get_or_create(
         name= name,
         defaults= {
@@ -46,7 +50,16 @@ def add_product_to_catalog(user_id, product):
             "owner": user_id
             }
     )
+
+    # Checks per tag if tag already exist, if not it will create it
+    for tag in tags:
+        new_tag,_ = Tag.get_or_create(
+            name = tag.lower()
+        )
+        # Adds tags to product
+        ProductTag.create(product =new_product, tag=new_tag)
     return new_product.name  
+# add_product_to_catalog(1,["Diamond Ring","beautiful", 4.00,2,["Diamond","Ring"]])
 
 def update_stock(product_id, new_quantity):
     product = Product.get(Product.id == product_id)
