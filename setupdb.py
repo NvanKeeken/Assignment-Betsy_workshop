@@ -16,85 +16,147 @@ def populate_test_database():
         Tag,
         Transactions,
         ProductTag,
-        # OwnedProduct
     ])
 
-    # define test data per table
+    # Test-data per table 
     users = [
-              ["PrettyStones","prettystones@gmail.com","Louise", "Hendriks", "Bekerbaan", 
-              "4", "6333 EZ", "Schimmert", 
-              "The Netherlands","IDEAL","457868"],
+              {
+                "username":"PrettyStones",
+                "email":"prettystones@gmail.com",
+                "first_name":"Louise", 
+                "last_name":"Hendriks", 
+                "street_name":"Bekerbaan",
+                "house_number": "4", 
+                "postal_code":"6333 EZ", 
+                "city":"Schimmert", 
+                "country":"The Netherlands",
+                "billing_method":"IDEAL",
+                "bank_account_number":"457868"},
 
-              ["RusticMetals","d.jansen@hotmail.com","Denis", "Jansen", "Hanewei", 
-               "8a", "6344 GH", "Schinnen",
-               "The Netherlands","Paypal","567897"],
+              {
+                  "username":"RusticMetals",
+                  "email":"d.jansen@hotmail.com",
+                  "first_name":"Denis", 
+                  "last_name":"Jansen", 
+                  "street_name":"Hanewei", 
+                  "house_number":"8a", 
+                  "postal_code":"6344 GH", 
+                  "city":"Schinnen",
+                  "country":"The Netherlands",
+                  "billing_method":"Paypal",
+                  "bank_account_number":"567897"}
+               ,
 
-               ["Abel-Crystals","abel.oliver@gmail.com","Abel", "Oliver", "Baker Street", 
-                "11", "NW1", "London", 
-                "UK","Creditcard" ,"678967"],
+               {
+                "username":"Abel-Crystals",
+                "email":"abel.oliver@gmail.com",
+                "first_name":"Abel", 
+                "last_name":"Oliver", 
+                "street_name":"Baker Street", 
+                "house_number":"11", 
+                "postal_code":"NW1", 
+                "city":"London", 
+                "country":"UK",
+                "billing_method":"Creditcard",
+                "bank_account_number":"678967"},
 
-                ["Jenny-Jewels","jenny333@live.nl","Jenny", "Patterson", "Cannon Street", 
-                 "12", "B2 5EP", "Birmingham", 
-                 "UK","Creditcard" ,"56789"],
+                {
+                 "username":"Jenny-Jewels",
+                 "email":"jenny333@live.nl",
+                 "first_name":"Jenny", 
+                 "last_name":"Patterson", 
+                 "street_name":"Cannon Street", 
+                 "house_number":"12", 
+                 "postal_code":"B2 5EP", 
+                 "city":"Birmingham", 
+                 "country":"UK",
+                 "billing_method":"Creditcard",
+                 "bank_account_number":"56789"},
 
-                 ["Sunny-Jewelry","sunnyjewelry@gmail.com","Helena", "Joosten", "Hoofdstraat", 
-                  "62", "7311 At", "Apeldoorn", 
-                  "The Netherlands","IDEAL", "467390"]
-               ]
-
-    # products = [
-    #     ["Sunflower studs", "handmade plastic earing studs for summer and spring",
-    #      5.00, 3],
-         
-    #      ["Silver Moon studs", "handmade moon earing silver studs with a stirling silver back",
-    #      13.00, 16],
-         
-    #      ["Moonstone charm necklace", "handmade golden chain necklace with a white moonstone charm",
-    #      63.50, 6],
-         
-    #      ["Beaded necklace", "handmade beaded necklace with round emerald beads",
-    #       90.25, 20],
-          
-    #       ["Personalised cuff bracelet", "handmade 14k golden cuff bracelet with a personalised message engraved on it",
-    #        55.75, 15],
-
-    #        ["Silver flower bangle", "handmade silver bangle bracelet with daisies engraved on it",
-    #         51.75, 15],
-
-    #         ["Rustic golden ring", "handmade 14k golden hammered ring", 
-    #          38.00, 5],
-
-    #          ["Lapis lazuli ring", "handmade sirling silver ring with 4 mm gemstone", 
-    #           22.75, 10]
-    # ]
+                 {
+                  "username":"Sunny-Jewelry",
+                  "email":"sunnyjewelry@gmail.com",
+                  "first_name":"Helena", 
+                  "last_name":"Joosten", 
+                  "street_name":"Hoofdstraat", 
+                  "house_number":"62", 
+                  "postal_code":"7311 At", 
+                  "city":"Apeldoorn", 
+                  "country":"The Netherlands",
+                  "billing_method":"IDEAL", 
+                  "bank_account_number":"467390"
+               }]
+   
     products = [
-        ["Sunflower studs", "handmade plastic earing studs for summer and spring",
-         5.00, 3,"Sunny-Jewelry"],
+        {
+            "name":"Sunflower studs", 
+            "description":"handmade plastic earing studs for summer and spring",
+            "price_per_unit":5.00,
+            "quantity_in_stock": 3,
+            "owner":"Sunny-Jewelry"},
          
-         ["Silver Moon studs", "handmade moon earing silver studs with a stirling silver back",
-         13.00, 16,"Jenny-Jewels"],
+         {
+            "name":"Silver Moon studs", 
+            "description":"handmade moon earing silver studs with a stirling silver back",
+            "price_per_unit":13.00, 
+            "quantity_in_stock":16,
+            "owner":"Jenny-Jewels"},
          
-         ["Moonstone charm necklace", "handmade golden chain necklace with a white moonstone charm",
-         63.50, 6,"Jenny-Jewels"],
+         {
+            "name":"Moonstone charm necklace", 
+            "description":"handmade golden chain necklace with a white moonstone charm",
+            "price_per_unit":63.50, 
+            "quantity_in_stock":6,
+            "owner":"Jenny-Jewels"},
          
-         ["Beaded necklace", "handmade beaded necklace with round emerald beads",
-          90.25, 20,"PrettyStones"],
+         {
+            "name":"Beaded necklace", 
+            "description":"handmade beaded necklace with round emerald beads",
+            "price_per_unit":90.25, 
+            "quantity_in_stock":20,
+            "owner":"PrettyStones"},
           
-          ["Personalised cuff bracelet", "handmade 14k golden cuff bracelet with a personalised message engraved on it",
-           55.75, 15,"RusticMetals"],
+          {
+           "name":"Personalised cuff bracelet", 
+           "description":"handmade 14k golden cuff bracelet with a personalised message engraved on it",
+           "price_per_unit":55.75, 
+           "quantity_in_stock":15,
+           "owner":"RusticMetals"},
 
-           ["Silver flower bangle", "handmade silver bangle bracelet with daisies engraved on it",
-            51.75, 15,"Sunny-Jewelry"],
+           {
+            "name":"Silver flower bangle", 
+            "description":"handmade silver bangle bracelet with daisies engraved on it",
+            "price_per_unit":51.75, 
+            "quantity_in_stock":15,
+            "owner":"Sunny-Jewelry"},
 
-            ["Rustic golden ring", "handmade 14k golden hammered ring", 
-             38.00, 5,"RusticMetals"],
+            {
+             "name":"Rustic golden ring", 
+             "description":"handmade 14k golden hammered ring", 
+             "price_per_unit":38.00, 
+             "quantity_in_stock":5,
+             "owner":"RusticMetals"},
 
-             ["Lapis lazuli ring", "handmade sirling silver ring with 4 mm gemstone", 
-              22.75, 10,"Abel-Crystals"]
+             {
+              "name":"Lapis lazuli ring", 
+              "description":"handmade sirling silver ring with 4 mm gemstone", 
+              "price_per_unit":22.75, 
+              "quantity_in_stock":10,
+               "owner":"Abel-Crystals"}
     ]
-    tags = ["ring", "bracelet", "necklace", "earrings",
-            "gold", "silver", "rosegold", "plastic",
-            "tiger eye", "moonstone", "emerald", "lapis lazuli"]
+    
+    tags = [{"name":"ring"}, 
+            {"name":"bracelet"}, 
+            {"name":"necklace"}, 
+            {"name":"earrings"},
+            {"name":"gold"}, 
+            {"name":"silver"}, 
+            {"name":"rosegold"}, 
+            {"name":"plastic"},
+            {"name":"tiger eye"}, 
+            {"name":"moonstone"}, 
+            {"name":"emerald"}, 
+            {"name":"lapis lazuli"}]
 
     transactions = [
         ["Beaded necklace", "Helena", "Joosten", 3],
@@ -112,42 +174,27 @@ def populate_test_database():
                     ("Lapis lazuli ring", ["ring", "lapis lazuli"])]
 
     # Insert new data per table
-    for user in users:
-        username, email, firstname, lastname, street, street_nr, postal_code, city, country, billing_method, account_nr = user
-        User.create(username = username,
-                    email = email,
-                    first_name = firstname, 
-                    last_name = lastname,
-                    street_name = street,
-                    house_number = street_nr,
-                    postal_code = postal_code,
-                    city = city,
-                    country = country,
-                    billing_method = billing_method,
-                    bank_account_number = account_nr)
+   
+    with db.atomic():
+        # bulk inserts
+        User.insert_many(users).execute()
+        Product.insert_many(products).execute()
+        Tag.insert_many(tags).execute()
         
-    for product in products:
-        name, description, price, stock, owner = product
-        product_owner = User.get(User.username == owner)
-        Product.create(name = name,
-                       description = description,
-                       price_per_unit = price,
-                       quantity_in_stock = stock,
-                       owner = product_owner)
-    for tag in tags:
-         Tag.create(name = tag)
-    
-    for product, firstname, lastname, quantity in transactions:
-        buyer = User.get(User.first_name == firstname and User.last_name == lastname)
-        product_id = Product.get(Product.name == product)
-        Transactions.create(
-            product = product_id, 
-            buyer = buyer, 
-            quantity_bought = quantity)
+        # Insert Transactions
+        for product, firstname, lastname, quantity in transactions:
+           buyer = User.get(User.first_name == firstname and User.last_name == lastname)
+           product_id = Product.get(Product.name == product)
+           Transactions.create(
+               product = product_id, 
+               buyer = buyer, 
+               quantity_bought = quantity)
+           
+        # Insert ProductTag
+        for product, tag_names in product_tags:
+           product = Product.get(Product.name == product)
+           for tag_name in tag_names:
+               tag = Tag.get(Tag.name == tag_name)
+               ProductTag.create(tag= tag, product= product)
         
-    for product, tag_names in product_tags:
-        product = Product.get(Product.name == product)
-        for tag_name in tag_names:
-            tag = Tag.get(Tag.name == tag_name)
-            ProductTag.create(tag= tag, product= product)
 populate_test_database()
