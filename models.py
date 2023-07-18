@@ -32,7 +32,7 @@ class User(BaseModel):
 class Product(BaseModel):
    name = CharField(index=True)
    description = TextField()
-   price_per_unit = DecimalField(constraints=[Check("price_per_unit > 0")], decimal_places=2, max_digits=6) 
+   price_per_unit = DecimalField(constraints=[Check("price_per_unit > 0")], decimal_places=2, max_digits=6, auto_round=True) 
    quantity_in_stock = IntegerField()
    owner = ForeignKeyField(User, backref="owned_products")
 

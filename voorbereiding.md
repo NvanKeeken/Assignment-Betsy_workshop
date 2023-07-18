@@ -163,5 +163,4 @@ possible ownend products:
 nog moeten doen:
 - try catch
 - billing method choices
-- bulk insert
 
