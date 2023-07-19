@@ -97,14 +97,14 @@ def populate_test_database():
     products = [
         {
             "name":"Sunflower studs", 
-            "description":"handmade plastic earing studs for summer and spring",
+            "description":"handmade plastic earring studs for summer and spring",
             "price_per_unit":5.00,
             "quantity_in_stock": 3,
             "owner":5},
          
          {
             "name":"Silver Moon studs", 
-            "description":"handmade moon earing silver studs with a stirling silver back",
+            "description":"handmade moon earring silver studs with a stirling silver back",
             "price_per_unit":13.00, 
             "quantity_in_stock":16,
             "owner":4},

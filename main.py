@@ -70,8 +70,7 @@ def add_product_to_catalog(user_id, product):
             name = tag.lower()
         )
         # Adds tags to product
-        ProductTag.create(product =new_product, tag=new_tag)
-    return new_product.name  
+        ProductTag.create(product =new_product, tag=new_tag)  
 
 # This function updates the stock quantity of a product.
 def update_stock(product_id, new_quantity):
