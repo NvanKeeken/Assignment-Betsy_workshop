@@ -1,6 +1,13 @@
 from models import (db, User, Product, Transactions, Tag, ProductTag)
 import os
 
+def main():
+    """
+    Comment out the fuction you are not using and run the file.
+    """
+    populate_test_database()
+    #delete_database()
+
 def delete_database():
     cwd = os.getcwd()
     database_path = os.path.join(cwd, "betsy.db")
@@ -181,9 +188,12 @@ def populate_test_database():
         Product.insert_many(products).execute()
         Tag.insert_many(tags).execute()
         Transactions.insert_many(transactions).execute() 
-        
+
         # Insert ProductTag
         for product, tag_names in product_tags:
            for tag_name in tag_names:
                ProductTag.create(tag= tag_name, product= product)
-populate_test_database()
+
+
+if __name__ == "__main__":
+    main()

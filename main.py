@@ -5,13 +5,21 @@ __human_name__ = "Betsy Webshop"
 # Add your code after this line
 from models import (User, Product, Transactions, ProductTag,Tag)
 
+# Querying
+
+"""This function must search for products based on a term in the name or description of a product.
+It returns a list of these products. If there are no products found based on the term the 
+list will be empty."""
 def search(term):
     product_contain_term =[] 
-    products_contain_search = Product.select().where(Product.name.contains(term) | Product.description.contains(term))
+    # checks if product name or desription contains term (case-insensitive by default) 
+    products_contain_search = (Product.select()
+                               .where(Product.name.contains(term) | Product.description.contains(term)))
     for product in products_contain_search:
         product_contain_term.append(product.name)
     return product_contain_term
 
+# This function returns list of products of a given user. So where the user is the seller
 def list_user_products(user_id):
     products_of_user = []
     products_owned_by_user= (
@@ -23,6 +31,7 @@ def list_user_products(user_id):
          products_of_user.append(product.name)
     return products_of_user
 
+# This function returns a list of all products for a given tag
 def list_products_per_tag(tag_id):
     products_per_tag = []
     products = (
@@ -34,10 +43,13 @@ def list_products_per_tag(tag_id):
         products_per_tag.append(product.product.name)
     return products_per_tag
 
-"""There are two parts to adding a product to the catalog:
-first you need to add product to Product catalog and second you need to
-add their tags to ProductTag. Add product as a array and the tags 
-of the product as a array in the array.  """
+
+"""This function adds a product to a user. This happens in two parts:
+1. product is added to Product model
+2. their tags are added to ProductTag model
+The product is parsed as a list like:
+[name, description, price, quantity, [tags]] """
+
 def add_product_to_catalog(user_id, product):
     name,description, price, quantity,tags= product
 
@@ -60,16 +72,17 @@ def add_product_to_catalog(user_id, product):
         # Adds tags to product
         ProductTag.create(product =new_product, tag=new_tag)
     return new_product.name  
-# add_product_to_catalog(1,["Diamond Ring","beautiful", 4.00,2,["Diamond","Ring"]])
 
+# This function updates the stock quantity of a product.
 def update_stock(product_id, new_quantity):
     product = Product.get(Product.id == product_id)
     product.quantity_in_stock = new_quantity
     product.save()
 
-"""To handle a purchase there are two main things that need to happen, 
-a new transaction needs to be added to a buyer in Transactions model
-and the stock of the product needs to be updatet """
+""" This function handles a purchase between a buyer and a seller for a given product.
+This happens in two parts: 
+1. a new transaction needs to be added to a buyer in Transactions model
+2. the stock of the product in Product model needs to be updated """
 
 def purchase_product(product_id, buyer_id, quantity):
     # Adds a new transaction to buyer 
@@ -82,7 +95,7 @@ def purchase_product(product_id, buyer_id, quantity):
     if new_quantity_in_stock >= 0:
        update_stock(product_id, new_quantity_in_stock)
 
-
+# This function removes a product from a user.
 def remove_product(product_id):
     product_removed = Product.get(Product.id == product_id)
     product_removed.delete_instance()
