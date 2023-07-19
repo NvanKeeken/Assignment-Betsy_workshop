@@ -161,6 +161,9 @@ possible ownend products:
 -Helena, Joosten, Sunflower studs, Silver flower bangle  
         
 nog moeten doen:
-- try catch
+
 - billing method choices
+-test add_to_catalog, purchase_product, remove_product, tags
+- test_data ids
+-check 
 
