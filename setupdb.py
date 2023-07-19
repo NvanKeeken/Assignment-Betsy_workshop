@@ -159,19 +159,19 @@ def populate_test_database():
             {"name":"lapis lazuli"}]
 
     transactions = [
-        ["Beaded necklace", "Helena", "Joosten", 3],
-        ["Silver Moon studs", "Louise", "Hendriks", 1],
-        ["Personalised cuff bracelet", "Abel", "Oliver", 2]
+        [4, 5, 3],
+        [2, 1, 1],
+        [5, 3, 2]
     ]
     
-    product_tags = [("Sunflower studs", ["earrings", "plastic"]), 
-                    ("Silver Moon studs", ["earrings", "silver"]),
-                    ("Moonstone charm necklace", ["necklace", "gold","moonstone"]),
-                    ("Beaded necklace", ["necklace","gold", "emerald"]),
-                    ("Personalised cuff bracelet", ["bracelet", "gold"]), 
-                    ("Silver flower bangle", ["ring", "silver"]),
-                    ("Rustic golden ring", ["ring", "gold"]), 
-                    ("Lapis lazuli ring", ["ring", "lapis lazuli"])]
+    product_tags = [(1, [4, 8]), 
+                    (2, [4, 6]),
+                    (3, [3, 5, 10]),
+                    (4, [3, 5, 11]),
+                    (5, [2, 5]), 
+                    (6, [1, 6]),
+                    (7, [1, 5]), 
+                    (8, [1, 12])]
 
     # Insert new data per table
    
@@ -180,21 +180,10 @@ def populate_test_database():
         User.insert_many(users).execute()
         Product.insert_many(products).execute()
         Tag.insert_many(tags).execute()
+        Transactions.insert_many(transactions).execute() 
         
-        # Insert Transactions
-        for product, firstname, lastname, quantity in transactions:
-           buyer = User.get(User.first_name == firstname and User.last_name == lastname)
-           product_id = Product.get(Product.name == product)
-           Transactions.create(
-               product = product_id, 
-               buyer = buyer, 
-               quantity_bought = quantity)
-           
         # Insert ProductTag
         for product, tag_names in product_tags:
-           product = Product.get(Product.name == product)
            for tag_name in tag_names:
-               tag = Tag.get(Tag.name == tag_name)
-               ProductTag.create(tag= tag, product= product)
-        
+               ProductTag.create(tag= tag_name, product= product)
 populate_test_database()
