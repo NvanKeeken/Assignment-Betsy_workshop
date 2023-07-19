@@ -36,7 +36,8 @@ def list_products_per_tag(tag_id):
 
 """There are two parts to adding a product to the catalog:
 first you need to add product to Product catalog and second you need to
-add their tags to ProductTag """
+add their tags to ProductTag. Add product as a array and the tags 
+of the product as a array in the array.  """
 def add_product_to_catalog(user_id, product):
     name,description, price, quantity,tags= product
 
