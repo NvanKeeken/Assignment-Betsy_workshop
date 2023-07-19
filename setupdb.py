@@ -93,56 +93,56 @@ def populate_test_database():
             "description":"handmade plastic earing studs for summer and spring",
             "price_per_unit":5.00,
             "quantity_in_stock": 3,
-            "owner":"Sunny-Jewelry"},
+            "owner":5},
          
          {
             "name":"Silver Moon studs", 
             "description":"handmade moon earing silver studs with a stirling silver back",
             "price_per_unit":13.00, 
             "quantity_in_stock":16,
-            "owner":"Jenny-Jewels"},
+            "owner":4},
          
          {
             "name":"Moonstone charm necklace", 
             "description":"handmade golden chain necklace with a white moonstone charm",
             "price_per_unit":63.50, 
             "quantity_in_stock":6,
-            "owner":"Jenny-Jewels"},
+            "owner":4},
          
          {
             "name":"Beaded necklace", 
             "description":"handmade beaded necklace with round emerald beads",
             "price_per_unit":90.25, 
             "quantity_in_stock":20,
-            "owner":"PrettyStones"},
+            "owner":1},
           
           {
            "name":"Personalised cuff bracelet", 
            "description":"handmade 14k golden cuff bracelet with a personalised message engraved on it",
            "price_per_unit":55.75, 
            "quantity_in_stock":15,
-           "owner":"RusticMetals"},
+           "owner":2},
 
            {
             "name":"Silver flower bangle", 
             "description":"handmade silver bangle bracelet with daisies engraved on it",
             "price_per_unit":51.75, 
             "quantity_in_stock":15,
-            "owner":"Sunny-Jewelry"},
+            "owner":5},
 
             {
              "name":"Rustic golden ring", 
              "description":"handmade 14k golden hammered ring", 
              "price_per_unit":38.00, 
              "quantity_in_stock":5,
-             "owner":"RusticMetals"},
+             "owner":2},
 
              {
               "name":"Lapis lazuli ring", 
               "description":"handmade sirling silver ring with 4 mm gemstone", 
               "price_per_unit":22.75, 
               "quantity_in_stock":10,
-               "owner":"Abel-Crystals"}
+               "owner":3}
     ]
     
     tags = [{"name":"ring"}, 

@@ -86,3 +86,4 @@ def purchase_product(product_id, buyer_id, quantity):
 def remove_product(product_id):
     product_removed = Product.get(Product.id == product_id)
     product_removed.delete_instance()
+    

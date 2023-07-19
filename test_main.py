@@ -5,7 +5,7 @@ from main import (search,
                   update_stock,
                   purchase_product,
                   remove_product)
-from models import (Product, ProductTag, Tag, Transactions)
+from models import (Product,Tag, Transactions)
 import pytest 
 
 
@@ -22,12 +22,12 @@ def test_search():
     assert search("flow") == array_term_flower
     assert search(none_existing_term) == []
 
-# def test_list_user_products():
-#     abels_products =["Lapis lazuli ring"]
-#     jenny_products =["Silver Moon studs","Moonstone charm necklace"]
-#     assert type(list_user_products(3)) == list
-#     assert list_user_products(3) == abels_products
-#     assert list_user_products(4) == jenny_products
+def test_list_user_products():
+    abels_products =["Lapis lazuli ring"]
+    dennis_products =['Personalised cuff bracelet', 'Rustic golden ring']
+    assert type(list_user_products(3)) == list
+    assert list_user_products(3) == abels_products
+    assert list_user_products(2) == dennis_products
 
 def test_list_products_per_tag():
     products_tag_earrings = ['Sunflower studs', 'Silver Moon studs']
